@@ -24,7 +24,7 @@ function App() {
     return (
         <div className="App">
             <header>
-                <h1><span>⚛️🔥💬</span></h1>
+                <h1><span role="img" aria-label="Header">⚛️🔥💬</span></h1>
                 <SignOut />
             </header>
 
@@ -98,8 +98,9 @@ function ChatRoom() {
 
             <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
-            <button type="submit" disabled={!formValue}><span>🕊️</span></button>
-
+            <button type="submit" disabled={!formValue || formValue.replace(/^\s+/, '').replace(/\s+$/, '') === ''}>
+                <span role="img" aria-label="Send">🕊️</span>
+            </button>
         </form>
     </>)
 }
@@ -112,7 +113,7 @@ function ChatMessage(props) {
 
     return (<>
         <div className={`message ${messageClass}`}>
-            <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} alt="User" />
+            <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} alt="User" aria-label="User" />
             <p>{text}</p>
         </div>
     </>)
